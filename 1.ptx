@@ -1,0 +1,1162 @@
+	.version 1.4
+	.target sm_11, map_f64_to_f32
+	// compiled with C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v3.2\\bin/../open64/lib//be.exe
+	// nvopencc 3.2 built on 2010-11-04
+
+	//-----------------------------------------------------------
+	// Compiling C:/Users/neuron/AppData/Local/Temp/tmpxft_000015f0_00000000-11_MatrixInversion_main.cpp3.i (C:/Users/neuron/AppData/Local/Temp/ccBI#.a04308)
+	//-----------------------------------------------------------
+
+	//-----------------------------------------------------------
+	// Options:
+	//-----------------------------------------------------------
+	//  Target:ptx, ISA:sm_11, Endian:little, Pointer Size:64
+	//  -O3	(Optimization level)
+	//  -g0	(Debug level)
+	//  -m2	(Report advisories)
+	//-----------------------------------------------------------
+
+	.file	1	"C:/Users/neuron/AppData/Local/Temp/tmpxft_000015f0_00000000-10_MatrixInversion_main.cudafe2.gpu"
+	.file	2	"d:/Work/MatrixInversion/MatrixInversion_main.cu"
+	.file	3	"C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\crtdefs.h"
+	.file	4	"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v3.2\include\crt/device_runtime.h"
+	.file	5	"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v3.2\include\host_defines.h"
+	.file	6	"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v3.2\include\builtin_types.h"
+	.file	7	"c:\program files\nvidia gpu computing toolkit\cuda\v3.2\include\device_types.h"
+	.file	8	"c:\program files\nvidia gpu computing toolkit\cuda\v3.2\include\driver_types.h"
+	.file	9	"c:\program files\nvidia gpu computing toolkit\cuda\v3.2\include\surface_types.h"
+	.file	10	"c:\program files\nvidia gpu computing toolkit\cuda\v3.2\include\texture_types.h"
+	.file	11	"c:\program files\nvidia gpu computing toolkit\cuda\v3.2\include\vector_types.h"
+	.file	12	"c:\program files\nvidia gpu computing toolkit\cuda\v3.2\include\builtin_types.h"
+	.file	13	"c:\program files\nvidia gpu computing toolkit\cuda\v3.2\include\host_defines.h"
+	.file	14	"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v3.2\include\device_launch_parameters.h"
+	.file	15	"c:\program files\nvidia gpu computing toolkit\cuda\v3.2\include\crt\storage_class.h"
+	.file	16	"C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\time.h"
+	.file	17	"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v3.2\include\common_functions.h"
+	.file	18	"c:\program files\nvidia gpu computing toolkit\cuda\v3.2\include\math_functions.h"
+	.file	19	"c:\program files\nvidia gpu computing toolkit\cuda\v3.2\include\math_constants.h"
+	.file	20	"c:\program files\nvidia gpu computing toolkit\cuda\v3.2\include\device_functions.h"
+	.file	21	"c:\program files\nvidia gpu computing toolkit\cuda\v3.2\include\sm_11_atomic_functions.h"
+	.file	22	"c:\program files\nvidia gpu computing toolkit\cuda\v3.2\include\sm_12_atomic_functions.h"
+	.file	23	"c:\program files\nvidia gpu computing toolkit\cuda\v3.2\include\sm_13_double_functions.h"
+	.file	24	"c:\program files\nvidia gpu computing toolkit\cuda\v3.2\include\sm_20_atomic_functions.h"
+	.file	25	"c:\program files\nvidia gpu computing toolkit\cuda\v3.2\include\sm_20_intrinsics.h"
+	.file	26	"c:\program files\nvidia gpu computing toolkit\cuda\v3.2\include\surface_functions.h"
+	.file	27	"c:\program files\nvidia gpu computing toolkit\cuda\v3.2\include\texture_fetch_functions.h"
+	.file	28	"c:\program files\nvidia gpu computing toolkit\cuda\v3.2\include\math_functions_dbl_ptx1.h"
+
+	.extern	.shared .align 4 .b8 data1[];
+
+	.entry _Z16MatVecMulComplexPK7complexiiPS_S2_ (
+		.param .u64 __cudaparm__Z16MatVecMulComplexPK7complexiiPS_S2__Y,
+		.param .s32 __cudaparm__Z16MatVecMulComplexPK7complexiiPS_S2__N,
+		.param .s32 __cudaparm__Z16MatVecMulComplexPK7complexiiPS_S2__p,
+		.param .u64 __cudaparm__Z16MatVecMulComplexPK7complexiiPS_S2__c,
+		.param .u64 __cudaparm__Z16MatVecMulComplexPK7complexiiPS_S2__L)
+	{
+	.reg .u16 %rh<6>;
+	.reg .u32 %r<37>;
+	.reg .u64 %rd<35>;
+	.reg .f32 %f<67>;
+	.reg .pred %p<11>;
+	.loc	2	297	0
+$LDWbegin__Z16MatVecMulComplexPK7complexiiPS_S2_:
+	mov.u64 	%rd1, data1;
+	.loc	2	307	0
+	cvt.u32.u16 	%r1, %tid.x;
+	cvt.u64.u32 	%rd2, %r1;
+	mul.wide.u32 	%rd3, %r1, 4;
+	add.u64 	%rd4, %rd3, %rd1;
+	mov.f32 	%f1, 0f00000000;     	// 0
+	st.shared.f32 	[%rd4+0], %f1;
+	.loc	2	308	0
+	cvt.u64.u16 	%rd5, %ntid.x;
+	mul.lo.u64 	%rd6, %rd5, 4;
+	add.u64 	%rd7, %rd1, %rd6;
+	add.u64 	%rd8, %rd3, %rd7;
+	mov.f32 	%f2, 0f00000000;     	// 0
+	st.shared.f32 	[%rd8+0], %f2;
+	.loc	2	24	0
+	ld.param.u32 	%r2, [__cudaparm__Z16MatVecMulComplexPK7complexiiPS_S2__p];
+	mov.u32 	%r3, 0;
+	setp.le.s32 	%p1, %r2, %r3;
+	@%p1 bra 	$Lt_0_10754;
+	ld.param.u32 	%r2, [__cudaparm__Z16MatVecMulComplexPK7complexiiPS_S2__p];
+	mov.s32 	%r4, %r2;
+	cvt.u32.u64 	%r5, %rd5;
+	mov.u16 	%rh1, %ctaid.y;
+	mov.u16 	%rh2, %ntid.y;
+	mul.wide.u16 	%r6, %rh1, %rh2;
+	cvt.u32.u16 	%r7, %nctaid.x;
+	mul.lo.u32 	%r8, %r7, %r2;
+	cvt.u32.u16 	%r9, %tid.y;
+	add.u32 	%r10, %r9, %r6;
+	mul.lo.u32 	%r11, %r8, %r5;
+	cvt.u32.u16 	%r12, %ctaid.x;
+	mul.lo.u32 	%r13, %r12, %r5;
+	add.u32 	%r14, %r1, %r13;
+	mul.lo.u32 	%r15, %r11, %r10;
+	add.u32 	%r16, %r14, %r15;
+	mul.lo.u32 	%r17, %r5, %r7;
+	cvt.s64.u32 	%rd9, %r17;
+	mul.wide.u32 	%rd10, %r17, 8;
+	ld.param.u64 	%rd11, [__cudaparm__Z16MatVecMulComplexPK7complexiiPS_S2__Y];
+	cvt.s64.s32 	%rd12, %r14;
+	mul.wide.s32 	%rd13, %r14, 8;
+	add.u64 	%rd14, %rd11, %rd13;
+	cvt.s64.s32 	%rd15, %r16;
+	mul.wide.s32 	%rd16, %r16, 8;
+	add.u64 	%rd17, %rd11, %rd16;
+	mov.s32 	%r18, 0;
+	mov.s32 	%r19, %r4;
+$Lt_0_6658:
+ //<loop> Loop body line 24, nesting depth: 1, estimated iterations: unknown
+	.loc	2	312	0
+	ld.shared.f32 	%f3, [%rd4+0];
+	ld.global.v2.f32 	{%f4,%f5}, [%rd14+0];
+	ld.global.v2.f32 	{%f6,%f7}, [%rd17+0];
+	mad.f32 	%f8, %f4, %f6, %f3;
+	mad.f32 	%f9, %f5, %f7, %f8;
+	st.shared.f32 	[%rd4+0], %f9;
+	.loc	2	313	0
+	ld.shared.f32 	%f10, [%rd8+0];
+	ld.global.v2.f32 	{%f11,%f12}, [%rd14+0];
+	ld.global.v2.f32 	{%f13,%f14}, [%rd17+0];
+	mad.f32 	%f15, %f11, %f14, %f10;
+	mul.f32 	%f16, %f13, %f12;
+	sub.f32 	%f17, %f15, %f16;
+	st.shared.f32 	[%rd8+0], %f17;
+	add.s32 	%r18, %r18, 1;
+	add.u64 	%rd17, %rd17, %rd10;
+	add.u64 	%rd14, %rd14, %rd10;
+	.loc	2	24	0
+	ld.param.u32 	%r2, [__cudaparm__Z16MatVecMulComplexPK7complexiiPS_S2__p];
+	.loc	2	313	0
+	setp.ne.s32 	%p2, %r18, %r2;
+	@%p2 bra 	$Lt_0_6658;
+	bra.uni 	$Lt_0_6146;
+$Lt_0_10754:
+	cvt.u32.u64 	%r5, %rd5;
+$Lt_0_6146:
+	.loc	2	315	0
+	bar.sync 	0;
+	.loc	2	318	0
+	shr.u32 	%r20, %r5, 1;
+	mov.s32 	%r21, %r20;
+	mov.u32 	%r22, 32;
+	setp.le.s32 	%p3, %r20, %r22;
+	@%p3 bra 	$Lt_0_7170;
+$Lt_0_7682:
+ //<loop> Loop body line 318
+	setp.le.u32 	%p4, %r21, %r1;
+	@%p4 bra 	$Lt_0_7938;
+ //<loop> Part of loop body line 318, head labeled $Lt_0_7682
+	.loc	2	322	0
+	add.u32 	%r23, %r21, %r1;
+	cvt.s64.s32 	%rd18, %r23;
+	mul.wide.s32 	%rd19, %r23, 4;
+	ld.shared.f32 	%f18, [%rd4+0];
+	add.u64 	%rd20, %rd19, %rd1;
+	ld.shared.f32 	%f19, [%rd20+0];
+	add.f32 	%f20, %f18, %f19;
+	st.shared.f32 	[%rd4+0], %f20;
+	.loc	2	323	0
+	ld.shared.f32 	%f21, [%rd8+0];
+	add.u64 	%rd21, %rd7, %rd19;
+	ld.shared.f32 	%f22, [%rd21+0];
+	add.f32 	%f23, %f21, %f22;
+	st.shared.f32 	[%rd8+0], %f23;
+$Lt_0_7938:
+ //<loop> Part of loop body line 318, head labeled $Lt_0_7682
+	.loc	2	326	0
+	bar.sync 	0;
+	.loc	2	318	0
+	shr.s32 	%r21, %r21, 1;
+	mov.u32 	%r24, 32;
+	setp.gt.s32 	%p5, %r21, %r24;
+	@%p5 bra 	$Lt_0_7682;
+$Lt_0_7170:
+	mov.u32 	%r25, 31;
+	setp.gt.u32 	%p6, %r1, %r25;
+	@%p6 bra 	$Lt_0_8706;
+	.loc	2	330	0
+	ld.shared.f32 	%f24, [%rd4+0];
+	ld.shared.f32 	%f25, [%rd4+128];
+	add.f32 	%f26, %f24, %f25;
+	st.shared.f32 	[%rd4+0], %f26;
+	.loc	2	331	0
+	ld.shared.f32 	%f27, [%rd8+0];
+	ld.shared.f32 	%f28, [%rd8+128];
+	add.f32 	%f29, %f27, %f28;
+	st.shared.f32 	[%rd8+0], %f29;
+	.loc	2	332	0
+	ld.shared.f32 	%f30, [%rd4+0];
+	ld.shared.f32 	%f31, [%rd4+64];
+	add.f32 	%f32, %f30, %f31;
+	st.shared.f32 	[%rd4+0], %f32;
+	.loc	2	333	0
+	ld.shared.f32 	%f33, [%rd8+0];
+	ld.shared.f32 	%f34, [%rd8+64];
+	add.f32 	%f35, %f33, %f34;
+	st.shared.f32 	[%rd8+0], %f35;
+	.loc	2	334	0
+	ld.shared.f32 	%f36, [%rd4+0];
+	ld.shared.f32 	%f37, [%rd4+32];
+	add.f32 	%f38, %f36, %f37;
+	st.shared.f32 	[%rd4+0], %f38;
+	.loc	2	335	0
+	ld.shared.f32 	%f39, [%rd8+0];
+	ld.shared.f32 	%f40, [%rd8+32];
+	add.f32 	%f41, %f39, %f40;
+	st.shared.f32 	[%rd8+0], %f41;
+	.loc	2	336	0
+	ld.shared.f32 	%f42, [%rd4+0];
+	ld.shared.f32 	%f43, [%rd4+16];
+	add.f32 	%f44, %f42, %f43;
+	st.shared.f32 	[%rd4+0], %f44;
+	.loc	2	337	0
+	ld.shared.f32 	%f45, [%rd8+0];
+	ld.shared.f32 	%f46, [%rd8+16];
+	add.f32 	%f47, %f45, %f46;
+	st.shared.f32 	[%rd8+0], %f47;
+	.loc	2	338	0
+	ld.shared.f32 	%f48, [%rd4+0];
+	ld.shared.f32 	%f49, [%rd4+8];
+	add.f32 	%f50, %f48, %f49;
+	st.shared.f32 	[%rd4+0], %f50;
+	.loc	2	339	0
+	ld.shared.f32 	%f51, [%rd8+0];
+	ld.shared.f32 	%f52, [%rd8+8];
+	add.f32 	%f53, %f51, %f52;
+	st.shared.f32 	[%rd8+0], %f53;
+	.loc	2	340	0
+	ld.shared.f32 	%f54, [%rd4+0];
+	ld.shared.f32 	%f55, [%rd4+4];
+	add.f32 	%f56, %f54, %f55;
+	st.shared.f32 	[%rd4+0], %f56;
+	.loc	2	341	0
+	ld.shared.f32 	%f57, [%rd8+0];
+	ld.shared.f32 	%f58, [%rd8+4];
+	add.f32 	%f59, %f57, %f58;
+	st.shared.f32 	[%rd8+0], %f59;
+$Lt_0_8706:
+	mov.u32 	%r26, 0;
+	setp.ne.u32 	%p7, %r1, %r26;
+	@%p7 bra 	$Lt_0_10242;
+	mov.u16 	%rh3, %ctaid.y;
+	mov.u16 	%rh4, %ntid.y;
+	mul.wide.u16 	%r27, %rh3, %rh4;
+	cvt.u32.u16 	%r28, %tid.y;
+	add.u32 	%r29, %r28, %r27;
+	cvt.u32.u16 	%r30, %nctaid.x;
+	mul.lo.u32 	%r31, %r30, %r29;
+	cvt.u32.u16 	%r32, %ctaid.x;
+	add.u32 	%r33, %r32, %r31;
+	mov.u32 	%r34, 0;
+	setp.ne.s32 	%p8, %r33, %r34;
+	.loc	2	348	0
+	ld.shared.f32 	%f60, [%rd4+0];
+	.loc	2	341	0
+	@%p8 bra 	$Lt_0_9730;
+	.loc	2	348	0
+	ld.shared.f32 	%f60, [%rd4+0];
+	sqrt.approx.f32 	%f61, %f60;
+	cvt.s64.s32 	%rd22, %r33;
+	rcp.approx.f32 	%f62, %f61;
+	mul.wide.s32 	%rd23, %r33, 8;
+	ld.param.u64 	%rd24, [__cudaparm__Z16MatVecMulComplexPK7complexiiPS_S2__L];
+	add.u64 	%rd25, %rd24, %rd23;
+	.loc	2	349	0
+	mov.f32 	%f63, 0f00000000;    	// 0
+	st.global.v2.f32 	[%rd25+0], {%f62,%f63};
+	.loc	2	350	0
+	ld.param.u64 	%rd26, [__cudaparm__Z16MatVecMulComplexPK7complexiiPS_S2__c];
+	add.u64 	%rd27, %rd26, %rd23;
+	.loc	2	351	0
+	mov.f32 	%f64, 0f00000000;    	// 0
+	st.global.v2.f32 	[%rd27+0], {%f62,%f64};
+$Lt_0_9730:
+	mov.u32 	%r35, 0;
+	setp.eq.s32 	%p9, %r33, %r35;
+	@%p9 bra 	$Lt_0_10242;
+	.loc	2	362	0
+	cvt.s64.s32 	%rd28, %r33;
+	mul.wide.s32 	%rd29, %r33, 8;
+	ld.param.u64 	%rd30, [__cudaparm__Z16MatVecMulComplexPK7complexiiPS_S2__c];
+	add.u64 	%rd31, %rd30, %rd29;
+	ld.shared.f32 	%f65, [%rd8+0];
+	.loc	2	348	0
+	ld.shared.f32 	%f60, [%rd4+0];
+	st.global.v2.f32 	[%rd31+0], {%f60,%f65};
+	.loc	2	364	0
+	ld.param.u64 	%rd32, [__cudaparm__Z16MatVecMulComplexPK7complexiiPS_S2__L];
+	add.u64 	%rd33, %rd32, %rd29;
+	st.global.v2.f32 	[%rd33+0], {%f60,%f65};
+$Lt_0_10242:
+$Lt_0_9218:
+	.loc	2	367	0
+	exit;
+$LDWend__Z16MatVecMulComplexPK7complexiiPS_S2_:
+	} // _Z16MatVecMulComplexPK7complexiiPS_S2_
+
+	.entry _Z17sumMatrixRowShortPK7complexiPS_ (
+		.param .u64 __cudaparm__Z17sumMatrixRowShortPK7complexiPS__Matr,
+		.param .s32 __cudaparm__Z17sumMatrixRowShortPK7complexiPS__lead,
+		.param .u64 __cudaparm__Z17sumMatrixRowShortPK7complexiPS__vec)
+	{
+	.reg .u32 %r<10>;
+	.reg .u64 %rd<10>;
+	.reg .f32 %f<6>;
+	.reg .pred %p<4>;
+	.loc	2	372	0
+$LDWbegin__Z17sumMatrixRowShortPK7complexiPS_:
+	cvt.u32.u16 	%r1, %tid.y;
+	ld.param.u32 	%r2, [__cudaparm__Z17sumMatrixRowShortPK7complexiPS__lead];
+	mov.u32 	%r3, 0;
+	setp.le.s32 	%p1, %r2, %r3;
+	@%p1 bra 	$Lt_1_2306;
+	ld.param.u32 	%r2, [__cudaparm__Z17sumMatrixRowShortPK7complexiPS__lead];
+	mov.s32 	%r4, %r2;
+	mul.lo.u32 	%r5, %r1, %r2;
+	mov.s32 	%r6, %r5;
+	add.s32 	%r7, %r5, %r2;
+	ld.param.u64 	%rd1, [__cudaparm__Z17sumMatrixRowShortPK7complexiPS__Matr];
+	cvt.s64.s32 	%rd2, %r5;
+	mul.wide.s32 	%rd3, %r5, 8;
+	add.u64 	%rd4, %rd1, %rd3;
+	mov.f32 	%f1, 0f00000000;     	// 0
+	mov.f32 	%f2, 0f00000000;     	// 0
+	mov.s32 	%r8, %r4;
+$Lt_1_1794:
+ //<loop> Loop body line 372, nesting depth: 1, estimated iterations: unknown
+	ld.global.v2.f32 	{%f3,%f4}, [%rd4+0];
+	.loc	2	378	0
+	add.f32 	%f2, %f3, %f2;
+	add.f32 	%f1, %f4, %f1;
+	add.s32 	%r6, %r6, 1;
+	add.u64 	%rd4, %rd4, 8;
+	setp.ne.s32 	%p2, %r6, %r7;
+	@%p2 bra 	$Lt_1_1794;
+	bra.uni 	$Lt_1_1282;
+$Lt_1_2306:
+	mov.f32 	%f1, 0f00000000;     	// 0
+	mov.f32 	%f2, 0f00000000;     	// 0
+$Lt_1_1282:
+	.loc	2	379	0
+	ld.param.u64 	%rd5, [__cudaparm__Z17sumMatrixRowShortPK7complexiPS__vec];
+	cvt.u64.u32 	%rd6, %r1;
+	mul.wide.u32 	%rd7, %r1, 8;
+	add.u64 	%rd8, %rd5, %rd7;
+	st.global.v2.f32 	[%rd8+0], {%f2,%f1};
+	.loc	2	380	0
+	exit;
+$LDWend__Z17sumMatrixRowShortPK7complexiPS_:
+	} // _Z17sumMatrixRowShortPK7complexiPS_
+
+	.entry _Z17sumMatrixColShortPK7complexiPS_ (
+		.param .u64 __cudaparm__Z17sumMatrixColShortPK7complexiPS__Matr,
+		.param .s32 __cudaparm__Z17sumMatrixColShortPK7complexiPS__lead,
+		.param .u64 __cudaparm__Z17sumMatrixColShortPK7complexiPS__vec)
+	{
+	.reg .u32 %r<10>;
+	.reg .u64 %rd<10>;
+	.reg .f32 %f<6>;
+	.reg .pred %p<4>;
+	.loc	2	383	0
+$LDWbegin__Z17sumMatrixColShortPK7complexiPS_:
+	cvt.s32.u16 	%r1, %tid.x;
+	ld.param.s32 	%r2, [__cudaparm__Z17sumMatrixColShortPK7complexiPS__lead];
+	mov.u32 	%r3, 0;
+	setp.le.s32 	%p1, %r2, %r3;
+	@%p1 bra 	$Lt_2_2306;
+	ld.param.s32 	%r2, [__cudaparm__Z17sumMatrixColShortPK7complexiPS__lead];
+	mov.s32 	%r4, %r2;
+	mov.s32 	%r5, %r1;
+	cvt.u32.u16 	%r6, %ntid.x;
+	ld.param.u64 	%rd1, [__cudaparm__Z17sumMatrixColShortPK7complexiPS__Matr];
+	mov.s32 	%r7, 0;
+	mov.f32 	%f1, 0f00000000;     	// 0
+	mov.f32 	%f2, 0f00000000;     	// 0
+	mov.s32 	%r8, %r4;
+$Lt_2_1794:
+ //<loop> Loop body line 383, nesting depth: 1, estimated iterations: unknown
+	.loc	2	390	0
+	cvt.u64.u32 	%rd2, %r5;
+	mul.wide.u32 	%rd3, %r5, 8;
+	.loc	2	383	0
+	ld.param.u64 	%rd1, [__cudaparm__Z17sumMatrixColShortPK7complexiPS__Matr];
+	.loc	2	390	0
+	add.u64 	%rd4, %rd1, %rd3;
+	ld.global.v2.f32 	{%f3,%f4}, [%rd4+0];
+	add.f32 	%f2, %f3, %f2;
+	add.f32 	%f1, %f4, %f1;
+	add.s32 	%r7, %r7, 1;
+	add.u32 	%r5, %r5, %r6;
+	.loc	2	383	0
+	ld.param.s32 	%r2, [__cudaparm__Z17sumMatrixColShortPK7complexiPS__lead];
+	.loc	2	390	0
+	setp.ne.s32 	%p2, %r2, %r7;
+	@%p2 bra 	$Lt_2_1794;
+	bra.uni 	$Lt_2_1282;
+$Lt_2_2306:
+	mov.f32 	%f1, 0f00000000;     	// 0
+	mov.f32 	%f2, 0f00000000;     	// 0
+$Lt_2_1282:
+	.loc	2	391	0
+	ld.param.u64 	%rd5, [__cudaparm__Z17sumMatrixColShortPK7complexiPS__vec];
+	cvt.s64.s32 	%rd6, %r1;
+	mul.wide.s32 	%rd7, %r1, 8;
+	add.u64 	%rd8, %rd5, %rd7;
+	st.global.v2.f32 	[%rd8+0], {%f2,%f1};
+	.loc	2	392	0
+	exit;
+$LDWend__Z17sumMatrixColShortPK7complexiPS_:
+	} // _Z17sumMatrixColShortPK7complexiPS_
+
+	.entry _Z16subMatrixVecScalP7complexS0_S0_ii (
+		.param .u64 __cudaparm__Z16subMatrixVecScalP7complexS0_S0_ii_Y,
+		.param .u64 __cudaparm__Z16subMatrixVecScalP7complexS0_S0_ii_c,
+		.param .u64 __cudaparm__Z16subMatrixVecScalP7complexS0_S0_ii_L,
+		.param .s32 __cudaparm__Z16subMatrixVecScalP7complexS0_S0_ii_p,
+		.param .s32 __cudaparm__Z16subMatrixVecScalP7complexS0_S0_ii_k)
+	{
+	.reg .u16 %rh<6>;
+	.reg .u32 %r<26>;
+	.reg .u64 %rd<15>;
+	.reg .f32 %f<23>;
+	.reg .pred %p<5>;
+	.shared .align 8 .b8 __cuda_local_var_86476_33_non_const_cc[8];
+	.shared .f32 __cuda_local_var_86477_31_non_const_cc0;
+	.shared .align 8 .b8 __cuda_local_var_86478_33_non_const_c2[8];
+	.loc	2	397	0
+$LDWbegin__Z16subMatrixVecScalP7complexS0_S0_ii:
+	cvt.u32.u16 	%r1, %tid.y;
+	cvt.u32.u16 	%r2, %tid.x;
+	add.u32 	%r3, %r1, %r2;
+	mov.u32 	%r4, 0;
+	setp.ne.s32 	%p1, %r3, %r4;
+	@%p1 bra 	$Lt_3_2050;
+	.loc	2	406	0
+	ld.param.u64 	%rd1, [__cudaparm__Z16subMatrixVecScalP7complexS0_S0_ii_c];
+	mov.u16 	%rh1, %ctaid.y;
+	mov.u16 	%rh2, %ntid.y;
+	mul.wide.u16 	%r5, %rh1, %rh2;
+	add.u32 	%r6, %r1, %r5;
+	cvt.s64.s32 	%rd2, %r6;
+	mul.wide.s32 	%rd3, %r6, 8;
+	add.u64 	%rd4, %rd1, %rd3;
+	ld.global.v2.f32 	{%f1,%f2}, [%rd4+8];
+	st.shared.f32 	[__cuda_local_var_86476_33_non_const_cc+0], %f1;
+	st.shared.f32 	[__cuda_local_var_86476_33_non_const_cc+4], %f2;
+	.loc	2	407	0
+	ld.global.f32 	%f3, [%rd1+0];
+	st.shared.f32 	[__cuda_local_var_86477_31_non_const_cc0], %f3;
+	.loc	2	408	0
+	mul.f32 	%f4, %f3, %f3;
+	mul.f32 	%f5, %f4, %f1;
+	neg.f32 	%f6, %f5;
+	st.shared.f32 	[__cuda_local_var_86478_33_non_const_c2+0], %f6;
+	mul.f32 	%f7, %f4, %f2;
+	neg.f32 	%f8, %f7;
+	st.shared.f32 	[__cuda_local_var_86478_33_non_const_c2+4], %f8;
+$Lt_3_2050:
+	.loc	2	410	0
+	bar.sync 	0;
+	ld.param.u32 	%r7, [__cudaparm__Z16subMatrixVecScalP7complexS0_S0_ii_p];
+	mov.u32 	%r8, 0;
+	setp.le.s32 	%p2, %r7, %r8;
+	@%p2 bra 	$Lt_3_2562;
+	ld.param.u32 	%r7, [__cudaparm__Z16subMatrixVecScalP7complexS0_S0_ii_p];
+	mov.s32 	%r9, %r7;
+	cvt.u32.u16 	%r10, %ntid.x;
+	cvt.u32.u16 	%r11, %ctaid.x;
+	mul.lo.u32 	%r12, %r11, %r10;
+	mov.u16 	%rh3, %ctaid.y;
+	mov.u16 	%rh4, %ntid.y;
+	mul.wide.u16 	%r13, %rh3, %rh4;
+	cvt.u32.u16 	%r14, %nctaid.x;
+	mul.lo.u32 	%r15, %r14, %r7;
+	add.u32 	%r16, %r12, %r2;
+	add.u32 	%r17, %r13, %r1;
+	mul.lo.u32 	%r18, %r15, %r10;
+	add.u32 	%r19, %r17, 1;
+	mul.lo.u32 	%r20, %r14, %r10;
+	cvt.s64.u32 	%rd5, %r20;
+	mul.wide.u32 	%rd6, %r20, 8;
+	ld.param.u64 	%rd7, [__cudaparm__Z16subMatrixVecScalP7complexS0_S0_ii_Y];
+	cvt.s64.s32 	%rd8, %r16;
+	mul.wide.s32 	%rd9, %r16, 8;
+	add.u64 	%rd10, %rd7, %rd9;
+	mul.lo.u32 	%r21, %r18, %r19;
+	add.s32 	%r22, %r16, %r21;
+	cvt.s64.s32 	%rd11, %r22;
+	mul.wide.s32 	%rd12, %r22, 8;
+	add.u64 	%rd13, %rd7, %rd12;
+	ld.shared.f32 	%f9, [__cuda_local_var_86478_33_non_const_c2+4];
+	ld.shared.f32 	%f10, [__cuda_local_var_86478_33_non_const_c2+0];
+	mov.s32 	%r23, 0;
+	mov.s32 	%r24, %r9;
+$Lt_3_3074:
+ //<loop> Loop body line 410, nesting depth: 1, estimated iterations: unknown
+	ld.global.v2.f32 	{%f11,%f12}, [%rd10+0];
+	ld.global.v2.f32 	{%f13,%f14}, [%rd13+0];
+	ld.shared.f32 	%f10, [__cuda_local_var_86478_33_non_const_c2+0];
+	.loc	2	419	0
+	mul.f32 	%f15, %f12, %f10;
+	.loc	2	410	0
+	ld.shared.f32 	%f9, [__cuda_local_var_86478_33_non_const_c2+4];
+	.loc	2	419	0
+	mad.f32 	%f16, %f11, %f9, %f15;
+	add.f32 	%f17, %f14, %f16;
+	mul.f32 	%f18, %f12, %f9;
+	mul.f32 	%f19, %f11, %f10;
+	sub.f32 	%f20, %f19, %f18;
+	add.f32 	%f21, %f13, %f20;
+	st.global.v2.f32 	[%rd13+0], {%f21,%f17};
+	add.s32 	%r23, %r23, 1;
+	add.u64 	%rd13, %rd13, %rd6;
+	add.u64 	%rd10, %rd10, %rd6;
+	.loc	2	410	0
+	ld.param.u32 	%r7, [__cudaparm__Z16subMatrixVecScalP7complexS0_S0_ii_p];
+	.loc	2	419	0
+	setp.ne.s32 	%p3, %r23, %r7;
+	@%p3 bra 	$Lt_3_3074;
+$Lt_3_2562:
+	.loc	2	421	0
+	exit;
+$LDWend__Z16subMatrixVecScalP7complexS0_S0_ii:
+	} // _Z16subMatrixVecScalP7complexS0_S0_ii
+	.extern	.shared .align 4 .b8 data2[];
+
+	.entry _Z17subMatrixVecScal1P7complexS0_S0_iii (
+		.param .u64 __cudaparm__Z17subMatrixVecScal1P7complexS0_S0_iii_Y,
+		.param .u64 __cudaparm__Z17subMatrixVecScal1P7complexS0_S0_iii_c,
+		.param .u64 __cudaparm__Z17subMatrixVecScal1P7complexS0_S0_iii_L,
+		.param .s32 __cudaparm__Z17subMatrixVecScal1P7complexS0_S0_iii_p,
+		.param .s32 __cudaparm__Z17subMatrixVecScal1P7complexS0_S0_iii_k,
+		.param .s32 __cudaparm__Z17subMatrixVecScal1P7complexS0_S0_iii_M)
+	{
+	.reg .u32 %r<51>;
+	.reg .u64 %rd<53>;
+	.reg .f32 %f<24>;
+	.reg .pred %p<8>;
+	.loc	2	424	0
+$LDWbegin__Z17subMatrixVecScal1P7complexS0_S0_iii:
+	cvt.u32.u16 	%r1, %ntid.y;
+	cvt.u32.u16 	%r2, %ctaid.y;
+	mul.lo.u32 	%r3, %r2, %r1;
+	cvt.u32.u16 	%r4, %tid.y;
+	add.u32 	%r5, %r3, %r4;
+	ld.param.s32 	%r6, [__cudaparm__Z17subMatrixVecScal1P7complexS0_S0_iii_M];
+	ld.param.s32 	%r7, [__cudaparm__Z17subMatrixVecScal1P7complexS0_S0_iii_k];
+	sub.s32 	%r8, %r6, %r7;
+	sub.s32 	%r9, %r8, 1;
+	setp.ge.s32 	%p1, %r5, %r9;
+	@%p1 bra 	$Lt_4_5378;
+	mov.u32 	%r10, 0;
+	setp.eq.u32 	%p2, %r4, %r10;
+	ld.param.u32 	%r11, [__cudaparm__Z17subMatrixVecScal1P7complexS0_S0_iii_p];
+	mov.s32 	%r12, 0;
+	setp.gt.s32 	%p3, %r11, %r12;
+	@!%p2 bra 	$Lt_4_6146;
+	cvt.u32.u16 	%r13, %tid.x;
+	@!%p3 bra 	$Lt_4_6402;
+	ld.param.u32 	%r11, [__cudaparm__Z17subMatrixVecScal1P7complexS0_S0_iii_p];
+	mov.s32 	%r14, %r11;
+	cvt.u32.u16 	%r15, %ntid.x;
+	cvt.u32.u16 	%r16, %ctaid.x;
+	mul.lo.u32 	%r17, %r16, %r15;
+	mul.lo.u32 	%r18, %r15, %r11;
+	add.u32 	%r19, %r17, %r13;
+	cvt.u64.u32 	%rd1, %r18;
+	cvt.u32.u16 	%r20, %nctaid.x;
+	mul.lo.u32 	%r21, %r20, %r15;
+	mov.s32 	%r22, %r13;
+	mul.wide.u32 	%rd2, %r18, 4;
+	mov.s32 	%r23, %r19;
+	mov.s32 	%r24, 0;
+	ld.param.u64 	%rd3, [__cudaparm__Z17subMatrixVecScal1P7complexS0_S0_iii_Y];
+	mov.u64 	%rd4, data2;
+	mov.s32 	%r25, %r14;
+$Lt_4_6914:
+ //<loop> Loop body line 424, nesting depth: 1, estimated iterations: unknown
+	.loc	2	442	0
+	cvt.u64.u32 	%rd5, %r22;
+	mul.wide.u32 	%rd6, %r22, 4;
+	cvt.u64.u32 	%rd7, %r23;
+	mul.wide.u32 	%rd8, %r23, 8;
+	.loc	2	424	0
+	ld.param.u64 	%rd3, [__cudaparm__Z17subMatrixVecScal1P7complexS0_S0_iii_Y];
+	.loc	2	442	0
+	add.u64 	%rd9, %rd3, %rd8;
+	ld.global.v2.f32 	{%f1,%f2}, [%rd9+0];
+	add.u64 	%rd10, %rd6, %rd4;
+	st.shared.f32 	[%rd10+0], %f1;
+	.loc	2	443	0
+	add.s64 	%rd11, %rd6, %rd2;
+	add.u64 	%rd12, %rd4, %rd11;
+	st.shared.f32 	[%rd12+0], %f2;
+	add.s32 	%r24, %r24, 1;
+	add.u32 	%r22, %r22, %r15;
+	add.u32 	%r23, %r23, %r21;
+	.loc	2	424	0
+	ld.param.u32 	%r11, [__cudaparm__Z17subMatrixVecScal1P7complexS0_S0_iii_p];
+	.loc	2	443	0
+	setp.ne.s32 	%p4, %r24, %r11;
+	@%p4 bra 	$Lt_4_6914;
+$Lt_4_6402:
+	mov.u64 	%rd4, data2;
+	bra.uni 	$Lt_4_5890;
+$Lt_4_6146:
+	cvt.u32.u16 	%r13, %tid.x;
+	mov.u64 	%rd4, data2;
+$Lt_4_5890:
+	mov.u32 	%r26, 0;
+	setp.ne.u32 	%p5, %r13, %r26;
+	@%p5 bra 	$Lt_4_7426;
+	.loc	2	448	0
+	cvt.u32.u16 	%r27, %ntid.x;
+	.loc	2	424	0
+	ld.param.u32 	%r11, [__cudaparm__Z17subMatrixVecScal1P7complexS0_S0_iii_p];
+	.loc	2	448	0
+	mul.lo.u32 	%r18, %r27, %r11;
+	cvt.u64.u32 	%rd13, %r4;
+	mul.lo.u32 	%r28, %r18, 2;
+	mul.wide.u32 	%rd14, %r4, 4;
+	ld.param.u64 	%rd15, [__cudaparm__Z17subMatrixVecScal1P7complexS0_S0_iii_c];
+	cvt.s64.s32 	%rd16, %r5;
+	mul.wide.s32 	%rd17, %r5, 8;
+	add.u64 	%rd18, %rd15, %rd17;
+	ld.global.v2.f32 	{%f3,%f4}, [%rd18+8];
+	cvt.u64.u32 	%rd19, %r28;
+	mul.wide.u32 	%rd20, %r28, 4;
+	add.u64 	%rd21, %rd4, %rd20;
+	add.u64 	%rd22, %rd14, %rd21;
+	st.shared.f32 	[%rd22+0], %f3;
+	.loc	2	449	0
+	add.u32 	%r29, %r28, %r1;
+	cvt.u64.u32 	%rd23, %r29;
+	mul.wide.u32 	%rd24, %r29, 4;
+	add.u64 	%rd25, %rd4, %rd24;
+	add.u64 	%rd26, %rd14, %rd25;
+	st.shared.f32 	[%rd26+0], %f4;
+	@!%p2 bra 	$Lt_4_7938;
+	.loc	2	448	0
+	ld.param.u64 	%rd15, [__cudaparm__Z17subMatrixVecScal1P7complexS0_S0_iii_c];
+	.loc	2	450	0
+	ld.global.f32 	%f5, [%rd15+0];
+	add.u32 	%r30, %r18, %r1;
+	mul.lo.u32 	%r31, %r30, 2;
+	cvt.u64.u32 	%rd27, %r31;
+	mul.wide.u32 	%rd28, %r31, 4;
+	add.u64 	%rd29, %rd4, %rd28;
+	st.shared.f32 	[%rd29+0], %f5;
+$Lt_4_7938:
+$Lt_4_7426:
+	.loc	2	453	0
+	bar.sync 	0;
+	.loc	2	24	0
+	@!%p3 bra 	$Lt_4_8450;
+	mov.s32 	%r32, %r11;
+	cvt.u32.u16 	%r15, %ntid.x;
+	cvt.u32.u16 	%r33, %ctaid.x;
+	mul.lo.u32 	%r34, %r33, %r15;
+	mul.lo.u32 	%r18, %r15, %r11;
+	cvt.u64.u32 	%rd30, %r4;
+	add.u32 	%r35, %r34, %r13;
+	cvt.u32.u16 	%r36, %nctaid.x;
+	mul.lo.u32 	%r21, %r36, %r15;
+	mov.s32 	%r37, %r13;
+	add.u32 	%r38, %r18, %r1;
+	mul.lo.u32 	%r39, %r18, 2;
+	cvt.u64.u32 	%rd31, %r18;
+	mul.wide.u32 	%rd32, %r4, 4;
+	add.s32 	%r40, %r5, 1;
+	mul.lo.u32 	%r41, %r38, 2;
+	add.u32 	%r42, %r39, %r1;
+	cvt.u64.u32 	%rd33, %r39;
+	mul.wide.u32 	%rd2, %r18, 4;
+	mul.lo.s32 	%r43, %r40, %r11;
+	cvt.u64.u32 	%rd34, %r41;
+	cvt.u64.u32 	%rd35, %r42;
+	mul.wide.u32 	%rd36, %r39, 4;
+	mul.lo.u32 	%r44, %r43, %r15;
+	mul.wide.u32 	%rd37, %r41, 4;
+	mul.wide.u32 	%rd38, %r42, 4;
+	add.u64 	%rd39, %rd36, %rd4;
+	mul.lo.u32 	%r45, %r44, %r36;
+	add.u64 	%rd40, %rd37, %rd4;
+	add.u64 	%rd41, %rd38, %rd4;
+	add.u64 	%rd42, %rd39, %rd32;
+	add.u32 	%r46, %r45, %r35;
+	ld.shared.f32 	%f6, [%rd40+0];
+	add.u64 	%rd43, %rd41, %rd32;
+	ld.shared.f32 	%f7, [%rd42+0];
+	mov.s32 	%r47, %r46;
+	mul.f32 	%f8, %f6, %f6;
+	ld.shared.f32 	%f9, [%rd43+0];
+	ld.param.u64 	%rd3, [__cudaparm__Z17subMatrixVecScal1P7complexS0_S0_iii_Y];
+	mov.s32 	%r48, 0;
+	mov.s32 	%r49, %r32;
+$Lt_4_8962:
+ //<loop> Loop body line 24, nesting depth: 1, estimated iterations: unknown
+	.loc	2	458	0
+	cvt.u64.u32 	%rd44, %r37;
+	mul.wide.u32 	%rd45, %r37, 4;
+	add.u64 	%rd46, %rd45, %rd4;
+	add.s64 	%rd47, %rd45, %rd2;
+	add.u64 	%rd48, %rd4, %rd47;
+	ld.shared.f32 	%f10, [%rd46+0];
+	ld.shared.f32 	%f11, [%rd48+0];
+	cvt.u64.u32 	%rd49, %r47;
+	mul.wide.u32 	%rd50, %r47, 8;
+	.loc	2	24	0
+	ld.param.u64 	%rd3, [__cudaparm__Z17subMatrixVecScal1P7complexS0_S0_iii_Y];
+	.loc	2	458	0
+	add.u64 	%rd51, %rd3, %rd50;
+	ld.global.v2.f32 	{%f12,%f13}, [%rd51+0];
+	.loc	2	24	0
+	ld.shared.f32 	%f9, [%rd43+0];
+	.loc	2	458	0
+	mul.f32 	%f14, %f11, %f9;
+	.loc	2	24	0
+	ld.shared.f32 	%f7, [%rd42+0];
+	.loc	2	458	0
+	mul.f32 	%f15, %f7, %f10;
+	sub.f32 	%f16, %f15, %f14;
+	mul.f32 	%f17, %f8, %f16;
+	sub.f32 	%f18, %f12, %f17;
+	.loc	2	459	0
+	mul.f32 	%f19, %f11, %f7;
+	mad.f32 	%f20, %f9, %f10, %f19;
+	mul.f32 	%f21, %f20, %f8;
+	sub.f32 	%f22, %f13, %f21;
+	st.global.v2.f32 	[%rd51+0], {%f18,%f22};
+	add.s32 	%r48, %r48, 1;
+	add.u32 	%r37, %r37, %r15;
+	add.u32 	%r47, %r47, %r21;
+	setp.ne.s32 	%p6, %r48, %r11;
+	@%p6 bra 	$Lt_4_8962;
+$Lt_4_8450:
+$Lt_4_5378:
+	.loc	2	468	0
+	exit;
+$LDWend__Z17subMatrixVecScal1P7complexS0_S0_iii:
+	} // _Z17subMatrixVecScal1P7complexS0_S0_iii
+
+	.entry _Z17subMatrixVecScal2P7complexS0_S0_iii (
+		.param .u64 __cudaparm__Z17subMatrixVecScal2P7complexS0_S0_iii_Y,
+		.param .u64 __cudaparm__Z17subMatrixVecScal2P7complexS0_S0_iii_c,
+		.param .u64 __cudaparm__Z17subMatrixVecScal2P7complexS0_S0_iii_L,
+		.param .s32 __cudaparm__Z17subMatrixVecScal2P7complexS0_S0_iii_p,
+		.param .s32 __cudaparm__Z17subMatrixVecScal2P7complexS0_S0_iii_k,
+		.param .s32 __cudaparm__Z17subMatrixVecScal2P7complexS0_S0_iii_M)
+	{
+	.reg .u16 %rh<8>;
+	.reg .u32 %r<36>;
+	.reg .u64 %rd<21>;
+	.reg .f32 %f<25>;
+	.reg .pred %p<6>;
+	.local .align 8 .b8 __cuda___cuda_local_var_86550_9_non_const_Cvec_0192[32];
+	.local .align 8 .b8 __cuda___cuda_local_var_86551_9_non_const_Out_32224[32];
+	.loc	2	472	0
+$LDWbegin__Z17subMatrixVecScal2P7complexS0_S0_iii:
+	.loc	2	481	0
+	ld.param.u64 	%rd1, [__cudaparm__Z17subMatrixVecScal2P7complexS0_S0_iii_c];
+	ld.global.f32 	%f1, [%rd1+0];
+	.loc	2	482	0
+	mov.u16 	%rh1, %ntid.x;
+	mov.u16 	%rh2, %ctaid.x;
+	mul.wide.u16 	%r1, %rh2, %rh1;
+	cvt.u32.u16 	%r2, %tid.x;
+	add.u32 	%r3, %r2, %r1;
+	ld.param.u64 	%rd2, [__cudaparm__Z17subMatrixVecScal2P7complexS0_S0_iii_Y];
+	cvt.s64.s32 	%rd3, %r3;
+	mul.wide.s32 	%rd4, %r3, 8;
+	add.u64 	%rd5, %rd2, %rd4;
+	ld.global.v2.f32 	{%f2,%f3}, [%rd5+0];
+	.loc	2	24	0
+	ld.param.s32 	%r4, [__cudaparm__Z17subMatrixVecScal2P7complexS0_S0_iii_M];
+	ld.param.s32 	%r5, [__cudaparm__Z17subMatrixVecScal2P7complexS0_S0_iii_k];
+	sub.s32 	%r6, %r4, %r5;
+	mov.u16 	%rh3, %ctaid.y;
+	mov.u16 	%rh4, %ntid.y;
+	mul.wide.u16 	%r7, %rh3, %rh4;
+	cvt.u32.u16 	%r8, %tid.y;
+	add.u32 	%r9, %r8, %r7;
+	mul.lo.u32 	%r10, %r9, 4;
+	sub.s32 	%r11, %r6, %r10;
+	sub.s32 	%r12, %r11, 2;
+	mov.s32 	%r13, 4;
+	min.s32 	%r14, %r12, %r13;
+	mov.s32 	%r15, 0;
+	setp.gt.s32 	%p1, %r14, %r15;
+	@!%p1 bra 	$Lt_5_5890;
+	mov.s32 	%r16, %r14;
+	mov.u16 	%rh5, %nctaid.x;
+	mul.wide.u16 	%r17, %rh5, %rh1;
+	mov.u64 	%rd6, __cuda___cuda_local_var_86550_9_non_const_Cvec_0192;
+	mov.u64 	%rd7, __cuda___cuda_local_var_86551_9_non_const_Out_32224;
+	add.u32 	%r18, %r10, 1;
+	mov.s32 	%r19, %r18;
+	mul.lo.u32 	%r20, %r18, %r17;
+	add.s32 	%r21, %r14, %r10;
+	cvt.s64.s32 	%rd8, %r10;
+	mul.wide.s32 	%rd9, %r10, 8;
+	.loc	2	481	0
+	ld.param.u64 	%rd1, [__cudaparm__Z17subMatrixVecScal2P7complexS0_S0_iii_c];
+	.loc	2	24	0
+	add.u64 	%rd10, %rd1, %rd9;
+	add.u32 	%r22, %r3, %r20;
+	add.u32 	%r23, %r21, 1;
+	mov.s32 	%r24, %r16;
+$Lt_5_6402:
+ //<loop> Loop body line 24, nesting depth: 1, estimated iterations: unknown
+	ld.global.v2.f32 	{%f4,%f5}, [%rd10+8];
+	.loc	2	485	0
+	st.local.f32 	[%rd6+0], %f4;
+	st.local.f32 	[%rd6+4], %f5;
+	.loc	2	486	0
+	cvt.u64.u32 	%rd11, %r22;
+	mul.wide.u32 	%rd12, %r22, 8;
+	.loc	2	482	0
+	ld.param.u64 	%rd2, [__cudaparm__Z17subMatrixVecScal2P7complexS0_S0_iii_Y];
+	.loc	2	486	0
+	add.u64 	%rd13, %rd2, %rd12;
+	ld.global.v2.f32 	{%f6,%f7}, [%rd13+0];
+	st.local.f32 	[%rd7+0], %f6;
+	st.local.f32 	[%rd7+4], %f7;
+	add.u32 	%r19, %r19, 1;
+	add.u32 	%r22, %r22, %r17;
+	add.u64 	%rd10, %rd10, 8;
+	add.u64 	%rd7, %rd7, 8;
+	add.u64 	%rd6, %rd6, 8;
+	setp.ne.s32 	%p2, %r19, %r23;
+	@%p2 bra 	$Lt_5_6402;
+$Lt_5_5890:
+	@!%p1 bra 	$Lt_5_7938;
+	mov.s32 	%r25, %r14;
+	mul.f32 	%f8, %f1, %f1;
+	mov.u64 	%rd14, __cuda___cuda_local_var_86551_9_non_const_Out_32224;
+	mov.u64 	%rd15, __cuda___cuda_local_var_86550_9_non_const_Cvec_0192;
+	mov.s32 	%r26, 0;
+	mov.s32 	%r27, %r25;
+$Lt_5_7426:
+ //<loop> Loop body line 486, nesting depth: 1, estimated iterations: unknown
+	.loc	2	491	0
+	ld.local.f32 	%f9, [%rd15+4];
+	ld.local.f32 	%f10, [%rd15+0];
+	ld.local.f32 	%f11, [%rd14+4];
+	mul.f32 	%f12, %f9, %f2;
+	mad.f32 	%f13, %f10, %f3, %f12;
+	mul.f32 	%f14, %f13, %f8;
+	sub.f32 	%f15, %f11, %f14;
+	ld.local.f32 	%f16, [%rd14+0];
+	mul.f32 	%f17, %f9, %f3;
+	mul.f32 	%f18, %f10, %f2;
+	sub.f32 	%f19, %f18, %f17;
+	mul.f32 	%f20, %f8, %f19;
+	sub.f32 	%f21, %f16, %f20;
+	st.local.f32 	[%rd14+0], %f21;
+	st.local.f32 	[%rd14+4], %f15;
+	add.s32 	%r26, %r26, 1;
+	add.u64 	%rd15, %rd15, 8;
+	add.u64 	%rd14, %rd14, 8;
+	setp.ne.s32 	%p3, %r14, %r26;
+	@%p3 bra 	$Lt_5_7426;
+$Lt_5_6914:
+	@!%p1 bra 	$Lt_5_7938;
+	mov.s32 	%r28, %r14;
+	mov.u16 	%rh6, %nctaid.x;
+	mul.wide.u16 	%r17, %rh6, %rh1;
+	mov.u64 	%rd16, __cuda___cuda_local_var_86551_9_non_const_Out_32224;
+	add.u32 	%r29, %r10, 1;
+	mov.s32 	%r30, %r29;
+	mul.lo.u32 	%r31, %r29, %r17;
+	add.s32 	%r32, %r14, %r10;
+	add.u32 	%r33, %r3, %r31;
+	add.u32 	%r23, %r32, 1;
+	mov.s32 	%r34, %r28;
+$Lt_5_8450:
+ //<loop> Loop body line 491, nesting depth: 1, estimated iterations: unknown
+	.loc	2	495	0
+	cvt.u64.u32 	%rd17, %r33;
+	mul.wide.u32 	%rd18, %r33, 8;
+	.loc	2	482	0
+	ld.param.u64 	%rd2, [__cudaparm__Z17subMatrixVecScal2P7complexS0_S0_iii_Y];
+	.loc	2	495	0
+	add.u64 	%rd19, %rd2, %rd18;
+	ld.local.f32 	%f22, [%rd16+0];
+	ld.local.f32 	%f23, [%rd16+4];
+	st.global.v2.f32 	[%rd19+0], {%f22,%f23};
+	add.u32 	%r30, %r30, 1;
+	add.u32 	%r33, %r33, %r17;
+	add.u64 	%rd16, %rd16, 8;
+	setp.ne.s32 	%p4, %r30, %r23;
+	@%p4 bra 	$Lt_5_8450;
+$Lt_5_7938:
+	.loc	2	499	0
+	exit;
+$LDWend__Z17subMatrixVecScal2P7complexS0_S0_iii:
+	} // _Z17subMatrixVecScal2P7complexS0_S0_iii
+
+	.entry _Z7SetmatLP7complexS0_ii (
+		.param .u64 __cudaparm__Z7SetmatLP7complexS0_ii_L,
+		.param .u64 __cudaparm__Z7SetmatLP7complexS0_ii_c,
+		.param .s32 __cudaparm__Z7SetmatLP7complexS0_ii_k,
+		.param .s32 __cudaparm__Z7SetmatLP7complexS0_ii_M)
+	{
+	.reg .u32 %r<16>;
+	.reg .u64 %rd<13>;
+	.reg .f32 %f<11>;
+	.reg .pred %p<3>;
+	.loc	2	504	0
+$LDWbegin__Z7SetmatLP7complexS0_ii:
+	ld.param.u64 	%rd1, [__cudaparm__Z7SetmatLP7complexS0_ii_c];
+	ld.global.f32 	%f1, [%rd1+0];
+	ld.param.s32 	%r1, [__cudaparm__Z7SetmatLP7complexS0_ii_k];
+	sub.s32 	%r2, %r1, 1;
+	mul.lo.s32 	%r3, %r2, %r1;
+	ld.param.s32 	%r4, [__cudaparm__Z7SetmatLP7complexS0_ii_M];
+	mul.lo.s32 	%r5, %r4, %r1;
+	shr.s32 	%r6, %r3, 31;
+	mov.s32 	%r7, 1;
+	and.b32 	%r8, %r6, %r7;
+	add.s32 	%r9, %r8, %r3;
+	shr.s32 	%r10, %r9, 1;
+	sub.s32 	%r11, %r5, %r10;
+	ld.param.u64 	%rd2, [__cudaparm__Z7SetmatLP7complexS0_ii_L];
+	cvt.u32.u16 	%r12, %tid.y;
+	mov.u32 	%r13, 0;
+	setp.ne.u32 	%p1, %r12, %r13;
+	@%p1 bra 	$Lt_6_1282;
+	.loc	2	507	0
+	cvt.s64.s32 	%rd3, %r11;
+	mul.wide.s32 	%rd4, %r11, 8;
+	.loc	2	504	0
+	ld.param.u64 	%rd2, [__cudaparm__Z7SetmatLP7complexS0_ii_L];
+	.loc	2	507	0
+	add.u64 	%rd5, %rd2, %rd4;
+	.loc	2	504	0
+	ld.param.u64 	%rd1, [__cudaparm__Z7SetmatLP7complexS0_ii_c];
+	.loc	2	507	0
+	ld.global.f32 	%f2, [%rd1+4];
+	st.global.v2.f32 	[%rd5+0], {%f1,%f2};
+	bra.uni 	$Lt_6_1026;
+$Lt_6_1282:
+	.loc	2	509	0
+	cvt.u64.u32 	%rd6, %r12;
+	mul.wide.u32 	%rd7, %r12, 8;
+	.loc	2	504	0
+	ld.param.u64 	%rd1, [__cudaparm__Z7SetmatLP7complexS0_ii_c];
+	.loc	2	509	0
+	add.u64 	%rd8, %rd1, %rd7;
+	ld.global.v2.f32 	{%f3,%f4}, [%rd8+0];
+	neg.f32 	%f5, %f4;
+	mul.f32 	%f6, %f1, %f1;
+	add.u32 	%r14, %r11, %r12;
+	cvt.u64.u32 	%rd9, %r14;
+	mul.wide.u32 	%rd10, %r14, 8;
+	.loc	2	504	0
+	ld.param.u64 	%rd2, [__cudaparm__Z7SetmatLP7complexS0_ii_L];
+	.loc	2	509	0
+	add.u64 	%rd11, %rd2, %rd10;
+	mul.f32 	%f7, %f3, %f6;
+	neg.f32 	%f8, %f7;
+	mul.f32 	%f9, %f5, %f6;
+	st.global.v2.f32 	[%rd11+0], {%f8,%f9};
+$Lt_6_1026:
+	.loc	2	510	0
+	exit;
+$LDWend__Z7SetmatLP7complexS0_ii:
+	} // _Z7SetmatLP7complexS0_ii
+
+	.entry _Z17VecMulVechSumMatrP7complexii (
+		.param .u64 __cudaparm__Z17VecMulVechSumMatrP7complexii_L,
+		.param .s32 __cudaparm__Z17VecMulVechSumMatrP7complexii_M,
+		.param .s32 __cudaparm__Z17VecMulVechSumMatrP7complexii_k)
+	{
+	.reg .u16 %rh<4>;
+	.reg .u32 %r<30>;
+	.reg .u64 %rd<13>;
+	.reg .f32 %f<15>;
+	.loc	2	517	0
+$LDWbegin__Z17VecMulVechSumMatrP7complexii:
+	.loc	2	526	0
+	mov.u16 	%rh1, %ctaid.x;
+	mov.u16 	%rh2, %ntid.x;
+	mul.wide.u16 	%r1, %rh1, %rh2;
+	cvt.u32.u16 	%r2, %tid.x;
+	add.u32 	%r3, %r2, %r1;
+	ld.param.s32 	%r4, [__cudaparm__Z17VecMulVechSumMatrP7complexii_M];
+	mul.lo.s32 	%r5, %r4, %r3;
+	sub.s32 	%r6, %r3, 1;
+	mul.lo.s32 	%r7, %r6, %r3;
+	shr.s32 	%r8, %r7, 31;
+	mov.s32 	%r9, 1;
+	and.b32 	%r10, %r8, %r9;
+	add.s32 	%r11, %r10, %r7;
+	shr.s32 	%r12, %r11, 1;
+	sub.s32 	%r13, %r5, %r12;
+	ld.param.s32 	%r14, [__cudaparm__Z17VecMulVechSumMatrP7complexii_k];
+	add.s32 	%r15, %r13, %r14;
+	sub.s32 	%r16, %r15, %r3;
+	cvt.s32.u16 	%r17, %tid.y;
+	ld.param.u64 	%rd1, [__cudaparm__Z17VecMulVechSumMatrP7complexii_L];
+	add.s32 	%r18, %r16, %r17;
+	cvt.s64.s32 	%rd2, %r18;
+	mul.wide.s32 	%rd3, %r18, 8;
+	add.u64 	%rd4, %rd1, %rd3;
+	add.u64 	%rd5, %rd4, 8;
+	mul.lo.s32 	%r19, %r14, %r4;
+	sub.s32 	%r20, %r14, 1;
+	mul.lo.s32 	%r21, %r20, %r14;
+	shr.s32 	%r22, %r21, 31;
+	mov.s32 	%r23, 1;
+	and.b32 	%r24, %r22, %r23;
+	add.s32 	%r25, %r24, %r21;
+	shr.s32 	%r26, %r25, 1;
+	sub.s32 	%r27, %r19, %r26;
+	add.s32 	%r28, %r17, %r27;
+	cvt.s64.s32 	%rd6, %r28;
+	mul.wide.s32 	%rd7, %r28, 8;
+	add.u64 	%rd8, %rd1, %rd7;
+	ld.global.v2.f32 	{%f1,%f2}, [%rd8+8];
+	cvt.s64.s32 	%rd9, %r16;
+	mul.wide.s32 	%rd10, %r16, 8;
+	add.u64 	%rd11, %rd1, %rd10;
+	ld.global.v2.f32 	{%f3,%f4}, [%rd11+0];
+	mul.f32 	%f5, %f2, %f4;
+	mul.f32 	%f6, %f3, %f1;
+	sub.f32 	%f7, %f6, %f5;
+	mul.f32 	%f8, %f1, %f4;
+	mad.f32 	%f9, %f3, %f2, %f8;
+	ld.global.v2.f32 	{%f10,%f11}, [%rd5+0];
+	add.f32 	%f12, %f11, %f9;
+	add.f32 	%f13, %f10, %f7;
+	st.global.v2.f32 	[%rd4+8], {%f13,%f12};
+	.loc	2	528	0
+	exit;
+$LDWend__Z17VecMulVechSumMatrP7complexii:
+	} // _Z17VecMulVechSumMatrP7complexii
+
+	.entry _Z12RowScalarMulP7complexii (
+		.param .u64 __cudaparm__Z12RowScalarMulP7complexii_L,
+		.param .s32 __cudaparm__Z12RowScalarMulP7complexii_M,
+		.param .s32 __cudaparm__Z12RowScalarMulP7complexii_k)
+	{
+	.reg .u32 %r<25>;
+	.reg .u64 %rd<9>;
+	.reg .f32 %f<7>;
+	.loc	2	533	0
+$LDWbegin__Z12RowScalarMulP7complexii:
+	.loc	2	539	0
+	ld.param.s32 	%r1, [__cudaparm__Z12RowScalarMulP7complexii_k];
+	ld.param.s32 	%r2, [__cudaparm__Z12RowScalarMulP7complexii_M];
+	ld.param.u64 	%rd1, [__cudaparm__Z12RowScalarMulP7complexii_L];
+	mul.lo.s32 	%r3, %r1, %r2;
+	sub.s32 	%r4, %r1, 1;
+	mul.lo.s32 	%r5, %r1, %r4;
+	shr.s32 	%r6, %r5, 31;
+	mov.s32 	%r7, 1;
+	and.b32 	%r8, %r6, %r7;
+	add.s32 	%r9, %r8, %r5;
+	shr.s32 	%r10, %r9, 1;
+	sub.s32 	%r11, %r3, %r10;
+	cvt.s64.s32 	%rd2, %r11;
+	mul.wide.s32 	%rd3, %r11, 8;
+	add.u64 	%rd4, %rd1, %rd3;
+	ld.global.f32 	%f1, [%rd4+0];
+	cvt.s32.u16 	%r12, %tid.x;
+	mul.lo.s32 	%r13, %r12, %r2;
+	sub.s32 	%r14, %r12, 1;
+	mul.lo.s32 	%r15, %r14, %r12;
+	shr.s32 	%r16, %r15, 31;
+	mov.s32 	%r17, 1;
+	and.b32 	%r18, %r16, %r17;
+	add.s32 	%r19, %r18, %r15;
+	shr.s32 	%r20, %r19, 1;
+	sub.s32 	%r21, %r13, %r20;
+	add.s32 	%r22, %r21, %r1;
+	sub.s32 	%r23, %r22, %r12;
+	cvt.s64.s32 	%rd5, %r23;
+	mul.wide.s32 	%rd6, %r23, 8;
+	add.u64 	%rd7, %rd1, %rd6;
+	ld.global.v2.f32 	{%f2,%f3}, [%rd7+0];
+	mul.f32 	%f4, %f3, %f1;
+	mul.f32 	%f5, %f2, %f1;
+	st.global.v2.f32 	[%rd7+0], {%f5,%f4};
+	.loc	2	540	0
+	exit;
+$LDWend__Z12RowScalarMulP7complexii:
+	} // _Z12RowScalarMulP7complexii
+
+	.entry _Z4warmi (
+		.param .s32 __cudaparm__Z4warmi_N)
+	{
+	.loc	2	543	0
+$LDWbegin__Z4warmi:
+	.loc	2	544	0
+	exit;
+$LDWend__Z4warmi:
+	} // _Z4warmi
+
+	.entry _Z4multP7complexS0_ii (
+		.param .u64 __cudaparm__Z4multP7complexS0_ii_Y,
+		.param .u64 __cudaparm__Z4multP7complexS0_ii_z,
+		.param .s32 __cudaparm__Z4multP7complexS0_ii_p,
+		.param .s32 __cudaparm__Z4multP7complexS0_ii_N)
+	{
+	.reg .u32 %r<9>;
+	.reg .u64 %rd<8>;
+	.reg .f32 %f<13>;
+	.reg .pred %p<4>;
+	.loc	2	546	0
+$LDWbegin__Z4multP7complexS0_ii:
+	ld.param.s32 	%r1, [__cudaparm__Z4multP7complexS0_ii_p];
+	mov.u32 	%r2, 0;
+	setp.le.s32 	%p1, %r1, %r2;
+	@%p1 bra 	$Lt_10_2306;
+	ld.param.s32 	%r1, [__cudaparm__Z4multP7complexS0_ii_p];
+	mov.s32 	%r3, %r1;
+	ld.param.s32 	%r4, [__cudaparm__Z4multP7complexS0_ii_N];
+	mov.s32 	%r5, %r4;
+	add.s32 	%r6, %r4, %r1;
+	ld.param.u64 	%rd1, [__cudaparm__Z4multP7complexS0_ii_Y];
+	mov.s64 	%rd2, %rd1;
+	cvt.s64.s32 	%rd3, %r4;
+	mul.wide.s32 	%rd4, %r4, 8;
+	add.u64 	%rd5, %rd1, %rd4;
+	mov.f32 	%f1, 0f00000000;     	// 0
+	mov.f32 	%f2, 0f00000000;     	// 0
+	mov.s32 	%r7, %r3;
+$Lt_10_1794:
+ //<loop> Loop body line 546, nesting depth: 1, estimated iterations: unknown
+	ld.global.v2.f32 	{%f3,%f4}, [%rd2+0];
+	ld.global.v2.f32 	{%f5,%f6}, [%rd5+0];
+	.loc	2	550	0
+	mul.f32 	%f7, %f4, %f6;
+	mad.f32 	%f8, %f3, %f5, %f7;
+	add.f32 	%f2, %f2, %f8;
+	mul.f32 	%f9, %f5, %f4;
+	mul.f32 	%f10, %f3, %f6;
+	sub.f32 	%f11, %f10, %f9;
+	add.f32 	%f1, %f1, %f11;
+	add.s32 	%r5, %r5, 1;
+	add.u64 	%rd5, %rd5, 8;
+	add.u64 	%rd2, %rd2, 8;
+	setp.ne.s32 	%p2, %r5, %r6;
+	@%p2 bra 	$Lt_10_1794;
+	bra.uni 	$Lt_10_1282;
+$Lt_10_2306:
+	mov.f32 	%f1, 0f00000000;     	// 0
+	mov.f32 	%f2, 0f00000000;     	// 0
+$Lt_10_1282:
+	.loc	2	551	0
+	ld.param.u64 	%rd6, [__cudaparm__Z4multP7complexS0_ii_z];
+	st.global.v2.f32 	[%rd6+0], {%f2,%f1};
+	.loc	2	552	0
+	exit;
+$LDWend__Z4multP7complexS0_ii:
+	} // _Z4multP7complexS0_ii
+

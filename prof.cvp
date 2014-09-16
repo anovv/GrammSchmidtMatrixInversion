@@ -1,0 +1,19 @@
+<!DOCTYPE cvp>
+<cvp version="2.1" >
+ <session>
+  <name>Session5</name>
+  <progpath>"D:/Work/MatrixInversion/x64/Debug/MatrixInversion.exe"</progpath>
+  <workdirpath>D:/Work/MatrixInversion/x64/Debug</workdirpath>
+  <datetime>02 ??? 2011 17:26:27</datetime>
+  <normalizedcounter>false</normalizedcounter>
+  <device multProcessorCount="8" warpSize="32" textureAlignment="256" maxRegPerBlock="8192" computeCapability="1.1" maxThreadPerBlock="512" totalConstMem="65536" maxGridDim="65535 65535" maxShareMemPerBlock="16384" id="0" chip="148" maxBlockDim="512 512 64" GpuOverlap="1" name="GeForce 9600 GT" label="Device_0" clockFreq="1625000" maxPitchMem="2147483647" >
+   <context totalcountercount="0" invalidcountercount="0" id="0" label="Context_0" truncatedcountercount="0" trace="0" >
+    <run number="1" >branch,divergent_branch,instructions,warp_serialize</run>
+    <run number="2" >cta_launched,gld_incoherent,gld_coherent,gst_incoherent</run>
+    <run number="3" >gst_coherent,local_load,local_store,tex_cache_hit</run>
+    <run number="4" >tex_cache_miss</run>
+   </context>
+  </device>
+ </session>
+</cvp>
+

@@ -1,0 +1,6 @@
+MatrixInversion start..512 Threads per block
+GPU Initialaze				           4 ms
+GPU Load data  				          77 ms
+GPU Compute  				        1060 ms
+GPU Save data  				           0 ms
+
